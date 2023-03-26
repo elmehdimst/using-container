@@ -12,7 +12,7 @@ jobs:
     environment: testing
     runs-on: ubuntu-latest
     container: 
-      image: node:18
+      image: redhat/ubi8
     services:
       mongodb:
         image: mongo
@@ -35,7 +35,7 @@ jobs:
           key: ${{ env.CACHE_KEY }}-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
-      - run: |        
+      - run: |
           echo "MONGODB_USERNAME: $MONGODB_USERNAME"   
           cat /etc/os-release     
       - name: Run server
