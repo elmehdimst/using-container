@@ -9,7 +9,6 @@ env:
   MONGODB_DB_NAME: gha-demo
 jobs:
   test:
-    continue-on-error: true
     environment: testing
     runs-on: ubuntu-latest
     container: 
@@ -29,6 +28,10 @@ jobs:
     steps:
       - name: Get Code
         uses: actions/checkout@v3
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 16
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
